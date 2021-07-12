@@ -17,7 +17,7 @@ spring:
           destination: packed
           group: queue
   rabbitmq:
-    host: 35.192.18.170
+    host: localhost
     port: 5672
     username: test
     password: test
