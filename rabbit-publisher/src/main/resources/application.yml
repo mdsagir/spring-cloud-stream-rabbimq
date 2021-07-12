@@ -1,0 +1,30 @@
+server:
+  shutdown: graceful
+
+spring:
+  lifecycle:
+    timeout-per-shutdown-phase: 15s
+  cloud:
+    function:
+      definition: sendNotification;packed
+    stream:
+      bindings:
+        sendNotification-out-0:
+          destination: alert
+          group: queue
+        packed-in-0:
+          destination: packed
+          group: queue
+      rabbit:
+        bindings:
+          order:
+            producer:
+              transacted: true
+
+
+  rabbitmq:
+    host: 35.192.18.170
+    port: 5672
+    username: test
+    password: test
+    connection-timeout: 15s

@@ -1,0 +1,24 @@
+spring:
+  cloud:
+    function:
+      definition: email;notification;order
+    stream:
+      bindings:
+        email-in-0:
+          destination: email
+          group: queue
+        notification-in-0:
+          destination: alert
+          group: queue
+        order-in-0:
+          destination: order
+          group: queue
+        order-out-0:
+          destination: packed
+          group: queue
+  rabbitmq:
+    host: 35.192.18.170
+    port: 5672
+    username: test
+    password: test
+    connection-timeout: 15s
